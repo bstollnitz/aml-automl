@@ -1,7 +1,7 @@
 $schema: https://azuremlschemas.azureedge.net/latest/autoMLJob.schema.json
 type: automl
 experiment_name: aml_automl
-compute: azureml:cluster-gpu
+compute: azureml:cluster-cpu
 
 task: classification
 log_verbosity: debug
@@ -9,17 +9,15 @@ primary_metric: accuracy
 target_column_name: "label"
 
 training_data:
-  path: "automl_train_data"
-  type: mltable
+  path: azureml:data-automl-train:1
 n_cross_validations: 5
 test_data:
-  path: "automl_test_data"
-  type: mltable
+  path: azureml:data-automl-test:1
 
 limits:
   timeout_minutes: 180
-  max_trials: 40
-  max_concurrent_trials: 5
   trial_timeout_minutes: 20
+  max_trials: 20
+  max_concurrent_trials: 4 # same as the number of machines in the cluster
   enable_early_termination: true
   exit_score: 0.92

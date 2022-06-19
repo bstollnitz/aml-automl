@@ -49,6 +49,13 @@ Create the compute cluster.
 az ml compute create -f cloud/cluster-cpu.yml
 ```
 
+Create the datasets.
+
+```
+az ml data create -f cloud/data-test.yml
+az ml data create -f cloud/data-train.yml
+```
+
 Create the automl job.
 
 ```
