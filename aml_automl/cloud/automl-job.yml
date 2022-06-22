@@ -3,37 +3,25 @@ type: automl
 experiment_name: aml_automl
 compute: azureml:cluster-cpu
 
-task: image_classification
+task: classification
 primary_metric: accuracy
 target_column_name: label
 log_verbosity: debug
 training_data:
   path: azureml:data-automl-train:1
-validation_data_size: 0.2
+n_cross_validations: 5
+test_data:
+  path: azureml:data-automl-test:1
 
 limits:
   timeout_minutes: 180
+  trial_timeout_minutes: 20
+  max_trials: 20
+  max_concurrent_trials: 4 # same as the number of nodes in the cluster
+  enable_early_termination: true
+  exit_score: 0.9
 
-image_model:
-  number_of_epochs: 8
-  early_stopping_patience: 3
-  early_stopping_delay: 3
+featurization:
+  mode: auto
 
-sweep:
-  limits:
-    max_trials: 20
-    max_concurrent_trials: 4 # same as the number of machines in the cluster
-  sampling_algorithm: random
-  early_termination:
-    type: bandit
-    evaluation_interval: 1
-    slack_factor: 0.1
-    delay_evaluation: 3
-
-search_space:
-  - model_name: "vits16r224"
-    learning_rate: "uniform(0.001, 0.01)"
-    optimizer: "choice('sgd', 'adamw')"
-  - model_name: "choice('seresnext', 'resnet50')"
-    learning_rate: "uniform(0.001, 0.01)"
-    weight_decay: "uniform(0.0, 0.01)"
+  
