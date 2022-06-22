@@ -1,5 +1,5 @@
 $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
-name: data-automl-test
+name: data-automl-classification-test
 description: Fashion MNIST test MLTable to be used in AutoML.
 path: ../automl_test_data
 type: mltable

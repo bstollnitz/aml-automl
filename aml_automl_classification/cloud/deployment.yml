@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
 name: blue
-endpoint_name: endpoint-automl
-model: azureml:model-automl@latest
+endpoint_name: endpoint-automl-classification
+model: azureml:model-automl-classification@latest
 instance_type: Standard_DS4_v2
 instance_count: 1

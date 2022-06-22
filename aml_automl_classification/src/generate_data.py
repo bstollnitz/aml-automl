@@ -2,7 +2,6 @@
 
 import logging
 from pathlib import Path
-import os
 
 import numpy as np
 from torch.utils.data import DataLoader
@@ -10,8 +9,8 @@ from torchvision import datasets
 from torchvision.transforms import ToTensor
 from tqdm import tqdm
 
-TRAIN_DATA_DIR = "aml_automl/automl_train_data"
-TEST_DATA_DIR = "aml_automl/automl_test_data"
+TRAIN_DATA_DIR = "aml_automl_classification/automl_train_data"
+TEST_DATA_DIR = "aml_automl_classification/automl_test_data"
 BATCH_SIZE = 64
 
 

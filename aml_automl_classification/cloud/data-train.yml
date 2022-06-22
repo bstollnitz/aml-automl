@@ -1,5 +1,5 @@
 $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
-name: data-automl-train
+name: data-automl-classification-train
 description: Fashion MNIST train MLTable to be used in AutoML.
 path: ../automl_train_data
 type: mltable

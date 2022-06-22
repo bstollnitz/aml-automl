@@ -1,4 +1,4 @@
-name: aml_automl
+name: aml_automl_classification
 channels:
   - anaconda
   - pytorch

@@ -33,14 +33,14 @@ conda env create -f environment.yml
 Activate conda environment:
 
 ```
-conda activate aml_automl
+conda activate aml_automl_classification
 ```
 
 
 ## Train and deploy in the cloud
 
 ```
-cd aml_automl
+cd aml_automl_classification
 ```
 
 Create the compute cluster.
@@ -72,7 +72,7 @@ az ml job download --name $run_id --output-name "model"
 Create the Azure ML model from the output.
 
 ```
-az ml model create --name model-automl --version 1 --path "azureml://jobs/$run_id/outputs/model" --type mlflow_model
+az ml model create --name model-automl-classification --version 1 --path "azureml://jobs/$run_id/outputs/model" --type mlflow_model
 ```
 
 Create the endpoint.
@@ -85,5 +85,5 @@ az ml online-deployment create -f cloud/deployment.yml --all-traffic
 Invoke the endpoint.
 
 ```
-az ml online-endpoint invoke --name endpoint-automl --request-file test_data/images_azureml.json
+az ml online-endpoint invoke --name endpoint-automl-classification --request-file test_data/images_azureml.json
 ```

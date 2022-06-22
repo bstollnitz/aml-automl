@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/autoMLJob.schema.json
 type: automl
-experiment_name: aml_automl
+experiment_name: aml_automl_classification
 compute: azureml:cluster-cpu
 
 task: classification
@@ -8,10 +8,10 @@ primary_metric: accuracy
 target_column_name: label
 log_verbosity: debug
 training_data:
-  path: azureml:data-automl-train:1
+  path: azureml:data-automl-classification-train:1
 n_cross_validations: 5
 test_data:
-  path: azureml:data-automl-test:1
+  path: azureml:data-automl-classification-test:1
 
 limits:
   timeout_minutes: 180
