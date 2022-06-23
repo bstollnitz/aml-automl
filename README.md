@@ -66,13 +66,20 @@ Go to the Azure ML Studio and wait until the Job completes.
 You don't need to download the trained model, but here's how you would do it if you wanted to:
 
 ```
-az ml job download --name $run_id --output-name "model"
+az ml job download --name $run_id --output-name "best_model"
+```
+
+You could also invoke the model locally, to make sure all works as expected before invoking your endpoint in the cloud, using either csv or json input: 
+
+```
+mlflow models predict --model-uri "named-outputs/best_model" --input-path "test_data/images.csv" --content-type csv
+mlflow models predict --model-uri "named-outputs/best_model" --input-path "test_data/images.json" --content-type json
 ```
 
 Create the Azure ML model from the output.
 
 ```
-az ml model create --name model-automl-classification --version 1 --path "azureml://jobs/$run_id/outputs/model" --type mlflow_model
+az ml model create --name model-automl-classification --version 1 --path "azureml://jobs/$run_id/outputs/best_model" --type mlflow_model
 ```
 
 Create the endpoint.
