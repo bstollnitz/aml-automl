@@ -2,6 +2,12 @@
 
 This project shows how to train a Fashion MNIST model using AutoML, and how to deploy it using an online managed endpoint. It uses MLflow for tracking and model representation.
 
+
+## Blog post
+
+To learn more about the code in this repo, check out the accompanying blog post: https://bea.stollnitz.com/blog/aml-automl-classification/
+
+
 ## Azure setup
 
 * You need to have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free?WT.mc_id=aiml-67318-bstollnitz) to try it out.
@@ -94,3 +100,8 @@ Invoke the endpoint.
 ```
 az ml online-endpoint invoke --name endpoint-automl-classification --request-file test_data/images_azureml.json
 ```
+
+
+## Related resources
+
+* [AutoML training](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-auto-train?WT.mc_id=aiml-67318-bstollnitz)
