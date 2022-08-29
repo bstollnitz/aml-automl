@@ -55,7 +55,8 @@ def generate_csv_from_images() -> None:
                X=X,
                delimiter=delimiter,
                fmt=fmt,
-               header=header)
+               header=header,
+               comments="")
 
 
 def get_dataframe_from_images() -> pandas.DataFrame:

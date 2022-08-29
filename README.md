@@ -49,6 +49,8 @@ conda activate aml_automl_classification
 cd aml_automl_classification
 ```
 
+Run `src/generate_data.py` to generate test and train data. Two folders will be created in this project: `automl_test_data` and `automl_train_data`.
+
 Create the compute cluster.
 
 ```
@@ -75,7 +77,7 @@ You don't need to download the trained model, but here's how you would do it if 
 az ml job download --name $run_id --output-name "best_model"
 ```
 
-You could also invoke the model locally, to make sure all works as expected before invoking your endpoint in the cloud, using either csv or json input: 
+If you downloaded the model, you can invoke it locally, to make sure all works as expected before invoking your endpoint in the cloud. YOu can use using either CSV or JSON files as input: 
 
 ```
 mlflow models predict --model-uri "named-outputs/best_model" --input-path "test_data/images.csv" --content-type csv
