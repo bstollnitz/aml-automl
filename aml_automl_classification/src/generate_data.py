@@ -9,8 +9,8 @@ from torchvision import datasets
 from torchvision.transforms import ToTensor
 from tqdm import tqdm
 
-TRAIN_DATA_DIR = "aml_automl_classification/automl_train_data"
-TEST_DATA_DIR = "aml_automl_classification/automl_test_data"
+TRAIN_DATA_DIR = "aml_automl_classification/cloud/automl_train_data"
+TEST_DATA_DIR = "aml_automl_classification/cloud/automl_test_data"
 BATCH_SIZE = 64
 
 
