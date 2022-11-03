@@ -5,10 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Current File",
+      "name": "Generate data",
       "type": "python",
       "request": "launch",
-      "program": "${file}",
-      "console": "integratedTerminal"
-    }]
+      "program": "${workspaceFolder}/aml_automl_classification/src/generate_data.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Generate test data",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/aml_automl_classification/test_data/generate_images.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+  ]
 }

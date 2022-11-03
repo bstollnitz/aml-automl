@@ -4,6 +4,7 @@ import logging
 from pathlib import Path
 
 import numpy as np
+import torch
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
@@ -28,7 +29,9 @@ def generate_csv(train: bool) -> None:
                                  train=train,
                                  download=True,
                                  transform=ToTensor())
-    loader = DataLoader(data, batch_size=BATCH_SIZE, shuffle=True)
+    loader: DataLoader[torch.Tensor] = DataLoader(data,
+                                                  batch_size=BATCH_SIZE,
+                                                  shuffle=True)
 
     image_nelements = data[0][0].nelement()
     csv_width = image_nelements + 1
@@ -47,7 +50,8 @@ def generate_csv(train: bool) -> None:
                X=csv_matrix,
                delimiter=delimiter,
                fmt=fmt,
-               header=csv_header)
+               header=csv_header,
+               comments="")
 
     mltable = Path(data_dir, "MLTable")
     mltable_contents = f"""

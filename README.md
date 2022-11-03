@@ -8,39 +8,26 @@ This project shows how to train a Fashion MNIST model using AutoML, and how to d
 To learn more about the code in this repo, check out the accompanying blog post: https://bea.stollnitz.com/blog/aml-automl-classification/
 
 
-## Azure setup
 
-* You need to have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free?WT.mc_id=aiml-67318-bstollnitz) to try it out.
-* Create a [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal?WT.mc_id=aiml-67318-bstollnitz).
-* Create a new machine learning workspace by following the "Create the workspace" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?WT.mc_id=aiml-67318-bstollnitz). Keep in mind that you'll be creating a "machine learning workspace" Azure resource, not a "workspace" Azure resource, which is entirely different!
+## Setup
+
+* You need to have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free) to try it out.
+* Create a [resource group](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal).
+* Create a new machine learning workspace by following the "Create the workspace" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources). Keep in mind that you'll be creating a "machine learning workspace" Azure resource, not a "workspace" Azure resource, which is entirely different!
 * If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace."
 * Alternatively, if you plan to use your local machine:
-  * Install the Azure CLI by following the instructions in the [documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?WT.mc_id=aiml-67318-bstollnitz).
-  * Install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?WT.mc_id=aiml-67318-bstollnitz).
-* In a terminal window, login to Azure by executing `az login --use-device-code`. 
+  * Install the Azure CLI by following the instructions in the [documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
+  * Install the ML extension to the Azure CLI by following the "Installation" section of the [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli).
+  * Install and activate the conda environment by executing the following commands:
+  ```
+  conda env create -f environment.yml
+  conda activate aml_automl_classification
+  ```
+* In a terminal window, log in to Azure by executing `az login --use-device-code`. 
 * Set your default subscription by executing `az account set -s "<YOUR_SUBSCRIPTION_NAME_OR_ID>"`. You can verify your default subscription by executing `az account show`, or by looking at `~/.azure/azureProfile.json`.
 * Set your default resource group and workspace by executing `az configure --defaults group="<YOUR_RESOURCE_GROUP>" workspace="<YOUR_WORKSPACE>"`. You can verify your defaults by executing `az configure --list-defaults` or by looking at `~/.azure/config`.
-* You can now open the [Azure Machine Learning studio](https://ml.azure.com/?WT.mc_id=aiml-67318-bstollnitz), where you'll be able to see and manage all the machine learning resources we'll be creating.
-* Although not essential to run the code in this post, I highly recommend installing the [Azure Machine Learning extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-ai).
-
-
-## Project setup
-
-If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace."
-
-Alternatively, you can set up your local machine using the following steps.
-
-Install conda environment:
-
-```
-conda env create -f environment.yml
-```
-
-Activate conda environment:
-
-```
-conda activate aml_automl_classification
-```
+* You can now open the [Azure Machine Learning studio](https://ml.azure.com/), where you'll be able to see and manage all the machine learning resources we'll be creating.
+* Install the [Azure Machine Learning extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.vscode-ai), and log in to it by clicking on "Azure" in the left-hand menu, and then clicking on "Sign in to Azure."
 
 
 ## Train and deploy in the cloud
@@ -49,7 +36,8 @@ conda activate aml_automl_classification
 cd aml_automl_classification
 ```
 
-Run `src/generate_data.py` to generate test and train data. Two folders will be created in this project: `automl_test_data` and `automl_train_data`.
+Under "Run and Debug" on VS Code's left navigation, choose the "Generate data" run configuration and press F5.
+Two folders will be created in this project: `automl_test_data` and `automl_train_data`.
 
 Create the compute cluster.
 
@@ -77,11 +65,10 @@ You don't need to download the trained model, but here's how you would do it if 
 az ml job download --name $run_id --output-name "best_model"
 ```
 
-If you downloaded the model, you can invoke it locally, to make sure all works as expected before invoking your endpoint in the cloud. You can use using either CSV or JSON files as input: 
+If you downloaded the model, you can invoke it locally, to make sure all works as expected before invoking your endpoint in the cloud: 
 
 ```
 mlflow models predict --model-uri "named-outputs/best_model" --input-path "test_data/images.csv" --content-type csv
-mlflow models predict --model-uri "named-outputs/best_model" --input-path "test_data/images.json" --content-type json
 ```
 
 Create the Azure ML model from the output.
