@@ -93,4 +93,5 @@ az ml online-endpoint invoke --name endpoint-automl-classification --request-fil
 
 ## Related resources
 
+* [What is automated machine learning?](https://learn.microsoft.com/en-us/azure/machine-learning/concept-automated-ml?WT.mc_id=aiml-67318-bstollnitz)
 * [AutoML training](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-configure-auto-train?WT.mc_id=aiml-67318-bstollnitz)
