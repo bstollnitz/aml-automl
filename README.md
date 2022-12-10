@@ -68,7 +68,7 @@ az ml job download --name $run_id --output-name "best_model"
 If you downloaded the model, you can invoke it locally, to make sure all works as expected before invoking your endpoint in the cloud: 
 
 ```
-mlflow models predict --model-uri "named-outputs/best_model" --input-path "test_data/images.csv" --content-type csv
+mlflow models predict --model-uri "named-outputs/best_model" --input-path "test_data/images.csv" --content-type csv --env-manager local
 ```
 
 Create the Azure ML model from the output.
