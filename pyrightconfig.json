@@ -1,8 +1,0 @@
-{
-    "include": [
-        "aml_automl_classification/src/*.py",
-        "aml_automl_classification/test_data/*.py"
-    ],
-    "reportMissingTypeStubs": false,
-    "reportUnknownMemberType": false,
-}

@@ -12,4 +12,3 @@ dependencies:
   - mlflow==1.26.0
   - yapf==0.31.0
   - pylint==2.12.2
-  - mypy==0.910
